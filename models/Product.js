@@ -10,6 +10,16 @@ class Product extends Model {}
 Product.init(
   {
     // define columns
+    id: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    prodcut_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },
   {
     sequelize,
