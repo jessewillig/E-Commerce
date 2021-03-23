@@ -41,6 +41,23 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new category
+  Category.create(req.body)
+    .then((category) => {
+      if (req.body.tagIds.length) {
+        const catTagIdArr = req.body.tagIds.map((tag_id) => {
+          return {
+            category_id: category.id,
+            tag_id,
+          };
+        });
+        return ProductTag.bulkCreate(catTagIdArr);
+      }
+      res.status(200).json(category);
+    })
+    .then((categories) => res.status(200).json (categories))
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
 
 router.put('/:id', (req, res) => {
