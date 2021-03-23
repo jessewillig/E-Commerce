@@ -10,8 +10,7 @@ router.get('/', (req, res) => {
     include: [
       Product,
       {
-        model: Tag,
-        through: ProductTag,
+        model: Product,
       },
     ],
   })
@@ -31,8 +30,7 @@ router.get('/:id', async (req, res) => {
     include: [
       Product,
       {
-        model: Tag,
-        through: ProductTag,
+        model: Product,
       },
     ],
   }) .then((categories) => res.json(categories))
